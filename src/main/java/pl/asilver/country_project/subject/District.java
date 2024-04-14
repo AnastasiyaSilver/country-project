@@ -4,17 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class District {
+    private String name;
     private List<City> cities;
-    public District(){
+
+    public District(String name) {
+        this.name = name;
         this.cities = new ArrayList<>();
-        for (int i = 0; i < 2; ++i){
-            City city = new City();
-            this.cities.add(city);
-        }
     }
 
-    public List<City> getCities(){
+    public String getName() {
+        return name;
+    }
+
+    public List<City> getCities() {
         return cities;
     }
 
+    public void addCity(City city) {
+        cities.add(city);
+    }
+
+    @Override
+    public String toString() {
+        return "District name:" + name + ", cities:" + cities;
+    }
 }

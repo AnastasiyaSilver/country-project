@@ -11,7 +11,7 @@ public class Citizen {
     private int age;
     private Country country;
 
-    public Citizen(){
+    public Citizen() {
         this.id = idCounter++;
         this.name = generateRandomName();
         this.surname = generateRandomName();

@@ -3,7 +3,6 @@ package pl.asilver.country_project.subject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Consumer;
 
 public class Country {
     private static Country instance = new Country();
@@ -14,10 +13,42 @@ public class Country {
     private Country() {
         this.capital = "Capital";
         this.regions = new ArrayList<>();
-        for (int i = 0; i <= 4; ++i) {
-            Region region = new Region();
-            this.regions.add(region);
-        }
+
+        Region region1 = new Region("Region1", 10000, "Center1");
+        Region region2 = new Region("Region2", 20000, "Center2");
+        Region region3 = new Region("Region3", 15000, "Center3");
+
+        this.regions.add(region1);
+        this.regions.add(region2);
+        this.regions.add(region3);
+
+        District district1 = new District("District1");
+        District district2 = new District("District2");
+        region1.addDistricts(district1);
+        region1.addDistricts(district2);
+
+        District district3 = new District("District3");
+        District district4 = new District("District4");
+        region2.addDistricts(district3);
+        region2.addDistricts(district4);
+
+        District district5 = new District("District5");
+        District district6 = new District("District6");
+        region3.addDistricts(district5);
+        region3.addDistricts(district6);
+
+        City city1 = new City("City1");
+        City city2 = new City("City2");
+        City city3 = new City("City3");
+        City city4 = new City("City4");
+        City city5 = new City("City5");
+        City city6 = new City("City6");
+        district1.addCity(city1);
+        district2.addCity(city2);
+        district3.addCity(city3);
+        district4.addCity(city4);
+        district5.addCity(city5);
+        district6.addCity(city6);
     }
 
     public static Country getInstance() {
@@ -43,10 +74,10 @@ public class Country {
         return area;
     }
 
-    public List<String> getRegionCenters() {
+    public List<String> getRegionalCenters() {
         List<String> regionCenters = new ArrayList<>();
         for (Region region : regions) {
-            regionCenters.add(region.getRegionCenter());
+            regionCenters.add(region.getRegionalCenter());
         }
         return regionCenters;
     }
@@ -54,10 +85,10 @@ public class Country {
     public double getAverageCitizenAge() {
         int totalAge = 0;
         int totalCitizens = 0;
-        for (Region region : regions){
-            for (District district : region.getDistricts()){
-                for (City city: district.getCities()){
-                    for (Citizen citizen: city.getCitizens()){
+        for (Region region : regions) {
+            for (District district : region.getDistricts()) {
+                for (City city : district.getCities()) {
+                    for (Citizen citizen : city.getCitizens()) {
                         totalAge += citizen.getAge();
                         totalCitizens++;
                     }
@@ -67,7 +98,7 @@ public class Country {
         return (double) totalAge / totalCitizens;
     }
 
-    public void printCitizensWithNLettersName (int n) {
+    public void printCitizensWithNLettersName(int n) {
         for (Region region : regions) {
             for (District district : region.getDistricts()) {
                 for (City city : district.getCities()) {
@@ -81,7 +112,7 @@ public class Country {
         }
     }
 
-    public void printCitizensWithNameStartingWith (char letter){
+    public void printCitizensWithNameStartingWith(char letter) {
         for (Region region : regions) {
             for (District district : region.getDistricts()) {
                 for (City city : district.getCities()) {
@@ -95,7 +126,7 @@ public class Country {
         }
     }
 
-    public void addCitizen(Citizen citizen){
+    public void addCitizen(Citizen citizen) {
         Random random = new Random();
         int regionIndex = random.nextInt(regions.size());
         Region region = regions.get(regionIndex);

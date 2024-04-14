@@ -4,29 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Region {
-    private String regionCenter;
+    private String name;
+    private String regionalCenter;
     private double area;
     private List<District> districts;
 
-    public Region() {
-        this.area = 10000;
+    public Region(String name, double area, String regionalCenter) {
+        this.name = name;
+        this.area = area;
+        this.regionalCenter = regionalCenter;
         this.districts = new ArrayList<>();
-        for (int i = 0; i < 2; ++i) {
-            District district = new District();
-            this.districts.add(district);
-        }
     }
 
-    public String getRegionCenter(){
-        return regionCenter;
+    public String getName() {
+        return name;
     }
 
-    public double getArea(){
+    public String getRegionalCenter() {
+        return regionalCenter;
+    }
+
+    public double getArea() {
         return area;
     }
 
-    public List<District> getDistricts(){
+    public List<District> getDistricts() {
         return districts;
     }
 
+    public void addDistricts(District district){
+        districts.add(district);
+    }
+
+    @Override
+    public String toString() {
+        return "Region name: " + name + ", regionalCenter: "
+                + regionalCenter + ", area: " + area +
+                ", districts: " + districts;
+    }
 }
