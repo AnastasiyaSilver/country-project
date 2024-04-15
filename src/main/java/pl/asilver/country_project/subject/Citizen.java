@@ -39,6 +39,18 @@ public class Citizen {
         return country;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     private String generateRandomName() {
         Random random = new Random();
         int length = random.nextInt(6) + 5;

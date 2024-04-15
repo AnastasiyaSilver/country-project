@@ -98,7 +98,7 @@ public class Country {
         return (double) totalAge / totalCitizens;
     }
 
-    public void printCitizensWithNLettersName(int n) {
+    public String printCitizensWithNLettersName(int n) {
         for (Region region : regions) {
             for (District district : region.getDistricts()) {
                 for (City city : district.getCities()) {
@@ -110,6 +110,7 @@ public class Country {
                 }
             }
         }
+        return null;
     }
 
     public void printCitizensWithNameStartingWith(char letter) {
