@@ -1,7 +1,10 @@
 package pl.asilver.country_project._main;
 
+import pl.asilver.country_project.service.Service;
 import pl.asilver.country_project.subject.Citizen;
 import pl.asilver.country_project.subject.Country;
+
+import javax.xml.validation.SchemaFactoryConfigurationError;
 
 import static pl.asilver.country_project.service.Service.readCharFromConsole;
 import static pl.asilver.country_project.service.Service.readNumberFromConsole;
@@ -9,10 +12,11 @@ import static pl.asilver.country_project.service.Service.readNumberFromConsole;
 public class _Main {
     public static void main(String[] args) {
         Country country = Country.getInstance();
+        Service service = new Service(country.getRegions());
 
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 3000; ++i) {
             Citizen citizen = new Citizen();
-            country.addCitizen(citizen);
+            service.addCitizen(citizen);
         }
 
         while (true) {
@@ -42,15 +46,15 @@ public class _Main {
                     System.out.println("Regional centers : " + country.getRegionalCenters());
                     break;
                 case 5:
-                    System.out.println("Average citizen age: " + country.getAverageCitizenAge());
+                    System.out.println("Average citizen age: " + service.getAverageCitizenAge());
                     break;
                 case 6:
                     int n = readNumberFromConsole("Enter number of letters:");
-                    country.printCitizensWithNLettersName(n);
+                    service.printCitizensWithNLettersName(n);
                     break;
                 case 7:
                     char m = readCharFromConsole("Enter letter for filtration:");
-                    country.printCitizensWithNameStartingWith('m');
+                    service.printCitizensWithNameStartingWith('m');
                     break;
                 case 0:
                     System.out.println("Exit program.");
